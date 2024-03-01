@@ -3,9 +3,11 @@ from setuptools import setup, find_packages
 from setuptools.command.develop import develop
 from setuptools.command.install import install
 
-cwd = os.path.dirname(os.path.abspath(__file__))
-requirements = open(os.path.join(cwd, "requirements.txt"), "r").readlines()
 
+cwd = os.path.dirname(os.path.abspath(__file__))
+
+with open('requirements.txt') as f:
+    reqs = f.read().splitlines()
 class PostInstallCommand(install):
     """Post-installation for installation mode."""
     def run(self):
@@ -20,11 +22,11 @@ class PostDevelopCommand(develop):
         os.system('python -m unidic download')
 
 setup(
-    name='melo',
-    version='0.1.1',
+    name='melotts',
+    version='0.1.2',
     packages=find_packages(),
     include_package_data=True,
-    install_requires=requirements,
+    install_requires=reqs,
     package_data={
         '': ['*.txt', 'cmudict_*'],
     },

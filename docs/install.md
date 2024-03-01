@@ -1,17 +1,17 @@
 ## Install and Use Locally
 
 ### Table of Content
-- [Linux Install](#linux-install)
-- [Windows and macOS](#windows-and-macos-install)
+- [Linux and macOS Install](#linux-and-macos-install)
+- [Docker Install for Windows and macOS](#docker-install)
 - [Usage](#usage)
   - [Web UI](#webui)
   - [CLI](#cli)
   - [Python API](#python-api)
 
-### Linux Install
-The repo is developed and tested on `Ubuntu 20.04` and `Python 3.9`. Use pip to install from github repo.
+### Linux and macOS Install
+The repo is developed and tested on `Ubuntu 20.04` and `Python 3.9`. Use pip to install from PyPI:
 ```bash
-pip install git+https://github.com/myshell-ai/MeloTTS.git
+pip install melotts
 python -m unidic download
 ```
 
@@ -23,9 +23,10 @@ cd MeloTTS
 pip install -e .
 python -m unidic download
 ```
+If you encountered issues in macOS install, try the [Docker Install](#docker-install)
 
-### Windows and macOS Install
-To avoid compatibility issues, for Windows and macOS users, we suggest to run via Docker. Ensure that [you have Docker installed](https://docs.docker.com/engine/install/).
+### Docker Install
+To avoid compatibility issues, for Windows users and some macOS users, we suggest to run via Docker. Ensure that [you have Docker installed](https://docs.docker.com/engine/install/).
 
 **Build Docker**
 
@@ -38,7 +39,7 @@ docker build -t melotts .
 
 **Run Docker**
 ```bash
-docker run -it -p 8888:8888 melotts
+docker run --gpus all -it -p 8888:8888 melotts
 ```
 Then open [http://localhost:8888](http://localhost:8888) in your browser to use the app.
 
